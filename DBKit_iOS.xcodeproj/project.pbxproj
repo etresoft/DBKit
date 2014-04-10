@@ -22,6 +22,12 @@
 		A504ACAE18F2F73B006C336A /* DBStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = A504ACA618F2F73B006C336A /* DBStatement.m */; };
 		A504ACAF18F2F73B006C336A /* DBUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = A504ACA818F2F73B006C336A /* DBUpdate.m */; };
 		A504ACB118F2F7DA006C336A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A504ACB018F2F7DA006C336A /* CoreData.framework */; };
+		A54D28A518F72E5C008B3CE6 /* DB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504AC9B18F2F73B006C336A /* DB.h */; };
+		A54D28A618F72E5C008B3CE6 /* DBDelete.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504AC9D18F2F73B006C336A /* DBDelete.h */; };
+		A54D28A718F72E5C008B3CE6 /* DBInsert.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504AC9F18F2F73B006C336A /* DBInsert.h */; };
+		A54D28A818F72E5C008B3CE6 /* DBSelect.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA318F2F73B006C336A /* DBSelect.h */; };
+		A54D28A918F72E5C008B3CE6 /* DBStatement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA518F2F73B006C336A /* DBStatement.h */; };
+		A54D28AA18F72E5C008B3CE6 /* DBUpdate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA718F2F73B006C336A /* DBUpdate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +47,12 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				A54D28A518F72E5C008B3CE6 /* DB.h in CopyFiles */,
+				A54D28A618F72E5C008B3CE6 /* DBDelete.h in CopyFiles */,
+				A54D28A718F72E5C008B3CE6 /* DBInsert.h in CopyFiles */,
+				A54D28A818F72E5C008B3CE6 /* DBSelect.h in CopyFiles */,
+				A54D28A918F72E5C008B3CE6 /* DBStatement.h in CopyFiles */,
+				A54D28AA18F72E5C008B3CE6 /* DBUpdate.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +83,7 @@
 		A504ACA718F2F73B006C336A /* DBUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUpdate.h; sourceTree = "<group>"; };
 		A504ACA818F2F73B006C336A /* DBUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUpdate.m; sourceTree = "<group>"; };
 		A504ACB018F2F7DA006C336A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A54D28BA18F7309A008B3CE6 /* DBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +143,7 @@
 		A504AC7718F2F71E006C336A /* DBKit */ = {
 			isa = PBXGroup;
 			children = (
+				A54D28BA18F7309A008B3CE6 /* DBKit.h */,
 				A504AC9B18F2F73B006C336A /* DB.h */,
 				A504AC9C18F2F73B006C336A /* DB.m */,
 				A504AC9D18F2F73B006C336A /* DBDelete.h */,

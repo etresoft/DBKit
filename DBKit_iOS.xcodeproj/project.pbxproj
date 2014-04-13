@@ -46,7 +46,6 @@
 		A504AC7218F2F71E006C336A /* libDBKit_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDBKit_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A504AC7518F2F71E006C336A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A504AC7918F2F71E006C336A /* DBKit_iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBKit_iOS-Prefix.pch"; sourceTree = "<group>"; };
-		A504AC8618F2F71E006C336A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		A504AC9B18F2F73B006C336A /* DB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB.h; sourceTree = "<group>"; };
 		A504AC9C18F2F73B006C336A /* DB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB.m; sourceTree = "<group>"; };
 		A504AC9D18F2F73B006C336A /* DBDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBDelete.h; sourceTree = "<group>"; };
@@ -100,7 +99,6 @@
 			children = (
 				A504ACB018F2F7DA006C336A /* CoreData.framework */,
 				A504AC7518F2F71E006C336A /* Foundation.framework */,
-				A504AC8618F2F71E006C336A /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

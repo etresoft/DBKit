@@ -33,7 +33,7 @@
 		A525C1EF18FAF8A000395D89 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A525C1F218FAF8A000395D89 /* DBKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBKit-Info.plist"; sourceTree = "<group>"; };
 		A525C1F418FAF8A000395D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A525C1F618FAF8A000395D89 /* DBKit_OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBKit_OSX-Prefix.pch"; sourceTree = "<group>"; };
+		A525C1F618FAF8A000395D89 /* DBKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBKit-Prefix.pch"; sourceTree = "<group>"; };
 		A525C1F718FAF8A000395D89 /* DBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBKit.h; sourceTree = "<group>"; };
 		A525C21518FAF8F000395D89 /* DB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB.h; sourceTree = "<group>"; };
 		A525C21618FAF8F000395D89 /* DB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB.m; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			children = (
 				A525C1F218FAF8A000395D89 /* DBKit-Info.plist */,
 				A525C1F318FAF8A000395D89 /* InfoPlist.strings */,
-				A525C1F618FAF8A000395D89 /* DBKit_OSX-Prefix.pch */,
+				A525C1F618FAF8A000395D89 /* DBKit-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

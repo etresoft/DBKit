@@ -11,7 +11,7 @@
 #import "DBUpdate.h"
 #import "DBDelete.h"
 
-#ifdef TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #define kApplicationWillTerminate UIApplicationWillTerminateNotification
 #else

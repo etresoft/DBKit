@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A504AC7618F2F71E006C336A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A504AC7518F2F71E006C336A /* Foundation.framework */; };
-		A504AC8418F2F71E006C336A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A504AC8318F2F71E006C336A /* XCTest.framework */; };
-		A504AC8518F2F71E006C336A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A504AC7518F2F71E006C336A /* Foundation.framework */; };
-		A504AC8718F2F71E006C336A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A504AC8618F2F71E006C336A /* UIKit.framework */; };
-		A504AC8A18F2F71E006C336A /* libDBKit_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A504AC7218F2F71E006C336A /* libDBKit_iOS.a */; };
-		A504AC9018F2F71E006C336A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A504AC8E18F2F71E006C336A /* InfoPlist.strings */; };
-		A504AC9218F2F71E006C336A /* DBKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A504AC9118F2F71E006C336A /* DBKitTests.m */; };
 		A504ACA918F2F73B006C336A /* DB.m in Sources */ = {isa = PBXBuildFile; fileRef = A504AC9C18F2F73B006C336A /* DB.m */; };
 		A504ACAA18F2F73B006C336A /* DBDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = A504AC9E18F2F73B006C336A /* DBDelete.m */; };
 		A504ACAB18F2F73B006C336A /* DBInsert.m in Sources */ = {isa = PBXBuildFile; fileRef = A504ACA018F2F73B006C336A /* DBInsert.m */; };
@@ -29,16 +23,6 @@
 		A54D28A918F72E5C008B3CE6 /* DBStatement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA518F2F73B006C336A /* DBStatement.h */; };
 		A54D28AA18F72E5C008B3CE6 /* DBUpdate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA718F2F73B006C336A /* DBUpdate.h */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A504AC8818F2F71E006C336A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A504AC6A18F2F71E006C336A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A504AC7118F2F71E006C336A;
-			remoteInfo = DBKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A504AC7018F2F71E006C336A /* CopyFiles */ = {
@@ -62,12 +46,7 @@
 		A504AC7218F2F71E006C336A /* libDBKit_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDBKit_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A504AC7518F2F71E006C336A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A504AC7918F2F71E006C336A /* DBKit_iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DBKit_iOS-Prefix.pch"; sourceTree = "<group>"; };
-		A504AC8218F2F71E006C336A /* DBKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A504AC8318F2F71E006C336A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A504AC8618F2F71E006C336A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		A504AC8D18F2F71E006C336A /* DBKit_iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DBKit_iOSTests-Info.plist"; sourceTree = "<group>"; };
-		A504AC8F18F2F71E006C336A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A504AC9118F2F71E006C336A /* DBKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBKitTests.m; sourceTree = "<group>"; };
 		A504AC9B18F2F73B006C336A /* DB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB.h; sourceTree = "<group>"; };
 		A504AC9C18F2F73B006C336A /* DB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB.m; sourceTree = "<group>"; };
 		A504AC9D18F2F73B006C336A /* DBDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBDelete.h; sourceTree = "<group>"; };
@@ -96,17 +75,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A504AC7F18F2F71E006C336A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A504AC8418F2F71E006C336A /* XCTest.framework in Frameworks */,
-				A504AC8718F2F71E006C336A /* UIKit.framework in Frameworks */,
-				A504AC8A18F2F71E006C336A /* libDBKit_iOS.a in Frameworks */,
-				A504AC8518F2F71E006C336A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				A504AC7718F2F71E006C336A /* DBKit */,
-				A504AC8B18F2F71E006C336A /* DBKitTests */,
 				A504AC7418F2F71E006C336A /* Frameworks */,
 				A504AC7318F2F71E006C336A /* Products */,
 			);
@@ -124,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				A504AC7218F2F71E006C336A /* libDBKit_iOS.a */,
-				A504AC8218F2F71E006C336A /* DBKit_iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,7 +100,6 @@
 			children = (
 				A504ACB018F2F7DA006C336A /* CoreData.framework */,
 				A504AC7518F2F71E006C336A /* Foundation.framework */,
-				A504AC8318F2F71E006C336A /* XCTest.framework */,
 				A504AC8618F2F71E006C336A /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -171,24 +136,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A504AC8B18F2F71E006C336A /* DBKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				A504AC9118F2F71E006C336A /* DBKitTests.m */,
-				A504AC8C18F2F71E006C336A /* Supporting Files */,
-			);
-			path = DBKitTests;
-			sourceTree = "<group>";
-		};
-		A504AC8C18F2F71E006C336A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A504AC8D18F2F71E006C336A /* DBKit_iOSTests-Info.plist */,
-				A504AC8E18F2F71E006C336A /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,24 +155,6 @@
 			productName = DBKit;
 			productReference = A504AC7218F2F71E006C336A /* libDBKit_iOS.a */;
 			productType = "com.apple.product-type.library.static";
-		};
-		A504AC8118F2F71E006C336A /* DBKit_iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A504AC9818F2F71E006C336A /* Build configuration list for PBXNativeTarget "DBKit_iOSTests" */;
-			buildPhases = (
-				A504AC7E18F2F71E006C336A /* Sources */,
-				A504AC7F18F2F71E006C336A /* Frameworks */,
-				A504AC8018F2F71E006C336A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A504AC8918F2F71E006C336A /* PBXTargetDependency */,
-			);
-			name = DBKit_iOSTests;
-			productName = DBKitTests;
-			productReference = A504AC8218F2F71E006C336A /* DBKit_iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -249,21 +178,9 @@
 			projectRoot = "";
 			targets = (
 				A504AC7118F2F71E006C336A /* DBKit_iOS */,
-				A504AC8118F2F71E006C336A /* DBKit_iOSTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		A504AC8018F2F71E006C336A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A504AC9018F2F71E006C336A /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A504AC6E18F2F71E006C336A /* Sources */ = {
@@ -280,34 +197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A504AC7E18F2F71E006C336A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A504AC9218F2F71E006C336A /* DBKitTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A504AC8918F2F71E006C336A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A504AC7118F2F71E006C336A /* DBKit_iOS */;
-			targetProxy = A504AC8818F2F71E006C336A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A504AC8E18F2F71E006C336A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A504AC8F18F2F71E006C336A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A504AC9318F2F71E006C336A /* Debug */ = {
@@ -402,42 +292,6 @@
 			};
 			name = Release;
 		};
-		A504AC9918F2F71E006C336A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBKit/DBKit-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DBKitTests/DBKit_iOSTests-Info.plist";
-				PRODUCT_NAME = DBKit_iOSTests;
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A504AC9A18F2F71E006C336A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DBKit/DBKit-Prefix.pch";
-				INFOPLIST_FILE = "DBKitTests/DBKit_iOSTests-Info.plist";
-				PRODUCT_NAME = DBKit_iOSTests;
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -455,15 +309,6 @@
 			buildConfigurations = (
 				A504AC9618F2F71E006C336A /* Debug */,
 				A504AC9718F2F71E006C336A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A504AC9818F2F71E006C336A /* Build configuration list for PBXNativeTarget "DBKit_iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A504AC9918F2F71E006C336A /* Debug */,
-				A504AC9A18F2F71E006C336A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

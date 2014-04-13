@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>5FFC03B8-7939-43DA-8200-43F07EB586E6</string>
+	<string>4CDDD6D1-4E87-45AF-91BD-7AEF369025C8</string>
 	<key>IDESourceControlProjectName</key>
-	<string>DBKit_iOS</string>
+	<string>DBKit_OSX</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>91639331-2597-4F9C-9839-ACD9FDCF90E7</key>
 		<string>https://github.com/etresoft/DBKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DBKit_iOS.xcodeproj/project.xcworkspace</string>
+	<string>DBKit_OSX.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>91639331-2597-4F9C-9839-ACD9FDCF90E7</key>

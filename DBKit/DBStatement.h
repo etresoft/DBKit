@@ -4,8 +4,6 @@
  ** Copyright (c) 2014. All rights reserved.
  **********************************************************************/
 
-#import <CoreData/CoreData.h>
-
 // Lightweight statement class to be used as a base class for operations.
 @interface DBStatement : NSObject
 

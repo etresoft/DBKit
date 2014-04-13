@@ -4,8 +4,6 @@
  ** Copyright (c) 2014. All rights reserved.
  **********************************************************************/
 
-#import <Foundation/Foundation.h>
-
 #import "DBMutatingStatement.h"
 
 @interface DBUpdate : DBMutatingStatement

@@ -4,18 +4,20 @@
  ** Copyright (c) 2014. All rights reserved.
  **********************************************************************/
 
-#ifdef TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <NSApplication/NSApplication.h>
-#endif
-
 #import "DB.h"
 #import "DBStatement.h"
 #import "DBSelect.h"
 #import "DBInsert.h"
 #import "DBUpdate.h"
 #import "DBDelete.h"
+
+#ifdef TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#define kApplicationWillTerminate UIApplicationWillTerminateNotification
+#else
+#import <NSApplication/NSApplication.h>
+#define kApplicationWillTerminate NSApplicationWillTerminateNotification
+#endif
 
 // Top-level database class. One per database.
 
@@ -64,7 +66,7 @@
         [[NSNotificationCenter defaultCenter]
           addObserver: self
           selector: @selector(applicationWillTerminate)
-          name: UIApplicationWillTerminateNotification
+          name: kApplicationWillTerminate
           object: nil];
 
         [[NSNotificationCenter defaultCenter]

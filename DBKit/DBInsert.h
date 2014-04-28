@@ -8,11 +8,7 @@
 
 @interface DBInsert : DBMutatingStatement
 
-// Execute the insert against a set of parameters.
-- (BOOL) executeParameters: (NSDictionary *) parameters;
-
-// Execute the insert against a set of parameters.
-- (BOOL) executeParameters: (NSDictionary *) parameters
-  error: (NSError **) error;
+// Insert an object into the inserting context.
+- (NSManagedObject *) insert;
 
 @end

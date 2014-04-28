@@ -12,34 +12,35 @@
 // Control structures for select operation.
 @property (assign) NSUInteger batchSize;
 
-@property (assign) NSRange range;
+// Distinct results?
+@property (assign) BOOL distinct;
+
+// Columns to fetch.
+@property (strong) NSArray * columns;
+
+// Exclude children.
+@property (assign) BOOL excludeChildren;
 
 // Array of NSSortDescriptor.
 @property (strong) NSArray * orderBy;
 
-// Section in Core Data.
-@property (strong) NSString * groupBy;
+// Range results.
+@property (assign) NSRange range;
 
-// Sections from Core Data results.
-@property (readonly) NSArray * groups;
+// Results of the select.
+@property (readonly) NSArray * objects;
 
-// A delegate for asynchronous updates to the fetch controller.
-@property (strong) id<NSFetchedResultsControllerDelegate> fetchDelegate;
+// Enumerate the fetched results.
+@property (readonly) NSEnumerator * objectEnumerator;
+
+// Return the number of objects that would be returned by a fetchAll.
+- (NSUInteger) count;
 
 // Fetch a single object from the results.
 - (NSManagedObject *) fetch;
 
 // Fetch all objects from the results.
 - (NSArray *) fetchAll;
-
-// Fetch a specific object via index path.
-- (NSManagedObject *) fetchAtIndexPath: (NSIndexPath *) indexPath;
-
-// Refresh an object changed in another context.
-- (void) refresh: (NSManagedObject *) object;
-
-// Return the number of objects that would be returned by a fetchAll.
-- (NSUInteger) count;
 
 @end
 

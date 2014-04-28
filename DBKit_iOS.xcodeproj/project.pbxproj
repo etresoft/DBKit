@@ -22,6 +22,7 @@
 		A54D28A818F72E5C008B3CE6 /* DBSelect.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA318F2F73B006C336A /* DBSelect.h */; };
 		A54D28A918F72E5C008B3CE6 /* DBStatement.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA518F2F73B006C336A /* DBStatement.h */; };
 		A54D28AA18F72E5C008B3CE6 /* DBUpdate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A504ACA718F2F73B006C336A /* DBUpdate.h */; };
+		A5FC6BE6190D412F00BCB110 /* DBUITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC6BE5190D412F00BCB110 /* DBUITableViewDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,9 @@
 		A504ACA818F2F73B006C336A /* DBUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUpdate.m; sourceTree = "<group>"; };
 		A504ACB018F2F7DA006C336A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A54D28BA18F7309A008B3CE6 /* DBKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBKit.h; sourceTree = "<group>"; };
+		A5FC6BE4190D412F00BCB110 /* DBUITableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUITableViewDataSource.h; sourceTree = "<group>"; };
+		A5FC6BE5190D412F00BCB110 /* DBUITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUITableViewDataSource.m; sourceTree = "<group>"; };
+		A5FC6BE7190D431800BCB110 /* DBUITableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBUITableViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,18 +113,21 @@
 				A54D28BA18F7309A008B3CE6 /* DBKit.h */,
 				A504AC9B18F2F73B006C336A /* DB.h */,
 				A504AC9C18F2F73B006C336A /* DB.m */,
+				A504ACA518F2F73B006C336A /* DBStatement.h */,
+				A504ACA618F2F73B006C336A /* DBStatement.m */,
+				A504ACA318F2F73B006C336A /* DBSelect.h */,
+				A504ACA418F2F73B006C336A /* DBSelect.m */,
+				A504ACA118F2F73B006C336A /* DBMutatingStatement.h */,
+				A504ACA218F2F73B006C336A /* DBMutatingStatement.m */,
 				A504AC9D18F2F73B006C336A /* DBDelete.h */,
 				A504AC9E18F2F73B006C336A /* DBDelete.m */,
 				A504AC9F18F2F73B006C336A /* DBInsert.h */,
 				A504ACA018F2F73B006C336A /* DBInsert.m */,
-				A504ACA118F2F73B006C336A /* DBMutatingStatement.h */,
-				A504ACA218F2F73B006C336A /* DBMutatingStatement.m */,
-				A504ACA318F2F73B006C336A /* DBSelect.h */,
-				A504ACA418F2F73B006C336A /* DBSelect.m */,
-				A504ACA518F2F73B006C336A /* DBStatement.h */,
-				A504ACA618F2F73B006C336A /* DBStatement.m */,
 				A504ACA718F2F73B006C336A /* DBUpdate.h */,
 				A504ACA818F2F73B006C336A /* DBUpdate.m */,
+				A5FC6BE7190D431800BCB110 /* DBUITableViewDelegate.h */,
+				A5FC6BE4190D412F00BCB110 /* DBUITableViewDataSource.h */,
+				A5FC6BE5190D412F00BCB110 /* DBUITableViewDataSource.m */,
 				A504AC7818F2F71E006C336A /* Supporting Files */,
 			);
 			path = DBKit;
@@ -191,6 +198,7 @@
 				A504ACAE18F2F73B006C336A /* DBStatement.m in Sources */,
 				A504ACAD18F2F73B006C336A /* DBSelect.m in Sources */,
 				A504ACAF18F2F73B006C336A /* DBUpdate.m in Sources */,
+				A5FC6BE6190D412F00BCB110 /* DBUITableViewDataSource.m in Sources */,
 				A504ACA918F2F73B006C336A /* DB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

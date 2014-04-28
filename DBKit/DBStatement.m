@@ -13,15 +13,6 @@
 
 // Allow access to Core Data structures if necessary.
 @synthesize managedObjectContext;
-@synthesize fetchedResultsController;
-
-- (NSFetchedResultsController *) fetchedResultsController
-  {
-  if(!fetchedResultsController)
-    [self execute];
-    
-  return fetchedResultsController;
-  }
 
 #pragma mark - Housekeeping
 
@@ -34,12 +25,6 @@
     managedObjectContext = context;
     
   return self;
-  }
-
-// Bind parameters for later execution.
-- (void) bindParameters: (NSDictionary *) parameters
-  {
-  self.parameters = parameters;
   }
 
 // Execute.

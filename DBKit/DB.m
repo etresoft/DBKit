@@ -11,13 +11,17 @@
 #import "DBUpdate.h"
 #import "DBDelete.h"
 
+// Hack to work on either iOS or OSX.
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #define kApplicationWillTerminate UIApplicationWillTerminateNotification
 #else
-#import <NSApplication/NSApplication.h>
+#import <Cocoa/Cocoa.h>
 #define kApplicationWillTerminate NSApplicationWillTerminateNotification
 #endif
+
+// The current database.
+static DB * current = nil;
 
 // Top-level database class. One per database.
 
@@ -47,6 +51,7 @@
     
   if(coordinator)
     {
+    // Do my persistence in the background.
     persistentObjectContext = 
       [[NSManagedObjectContext alloc]
         initWithConcurrencyType: NSPrivateQueueConcurrencyType];
@@ -55,6 +60,8 @@
       {
       [persistentObjectContext setPersistentStoreCoordinator: coordinator];
       
+      // Set my main managed object context to be a child of the
+      // persistent object context.
       managedObjectContext =
         [[NSManagedObjectContext alloc]
           initWithConcurrencyType: NSMainQueueConcurrencyType];
@@ -63,12 +70,14 @@
         {
         [managedObjectContext setParentContext: persistentObjectContext];
         
+        // Persist on exit from either iOS or OSX.
         [[NSNotificationCenter defaultCenter]
           addObserver: self
           selector: @selector(applicationWillTerminate)
           name: kApplicationWillTerminate
           object: nil];
 
+        // Push any saves to the persistent object context.
         [[NSNotificationCenter defaultCenter]
           addObserver: self
           selector: @selector(savedContext:)
@@ -200,6 +209,12 @@
   return database;
   }
 
+// The current database.
++ (DB *) current
+  {
+  return current;
+  }
+
 // Constructor
 - (id) initWithName: (NSString *) databaseName
   {
@@ -209,6 +224,12 @@
     name = databaseName;
     
   return self;
+  }
+
+// Set the current database.
+- (void) use
+  {
+  current = self;
   }
 
 #pragma mark - Application's Documents directory
@@ -298,7 +319,7 @@
   }
 
 - (DBSelect *) prepareSelectFrom: (NSString *) table
-  where: (NSPredicate *) where;
+  where: (NSPredicate *) where
   {
   DBSelect * select =
     [[DBSelect alloc]
@@ -311,7 +332,7 @@
   }
 
 - (DBSelect *) prepareSelectFrom: (NSString *) table
-  orderBy: (NSArray *) orderBy;
+  orderBy: (NSArray *) orderBy
   {
   DBSelect * select =
     [[DBSelect alloc]
@@ -324,21 +345,8 @@
   }
 
 - (DBSelect *) prepareSelectFrom: (NSString *) table
-  groupBy: (NSString *) groupBy;
-  {
-  DBSelect * select =
-    [[DBSelect alloc]
-      initWithManagedObjectContext: self.managedObjectContext];
-    
-  select.table = table;
-  select.groupBy = groupBy;
-  
-  return select;
-  }
-
-- (DBSelect *) prepareSelectFrom: (NSString *) table
   where: (NSPredicate *) where
-  groupBy: (NSString *) groupBy;
+  orderBy: (NSArray *) orderBy
   {
   DBSelect * select =
     [[DBSelect alloc]
@@ -346,53 +354,6 @@
     
   select.table = table;
   select.where = where;
-  select.groupBy = groupBy;
-  
-  return select;
-  }
-
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  where: (NSPredicate *) where
-  orderBy: (NSArray *) orderBy;
-  {
-  DBSelect * select =
-    [[DBSelect alloc]
-      initWithManagedObjectContext: self.managedObjectContext];
-    
-  select.table = table;
-  select.where = where;
-  select.orderBy = orderBy;
-  
-  return select;
-  }
-
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  where: (NSPredicate *) where
-  groupBy: (NSString *) groupBy
-  orderBy: (NSArray *) orderBy;
-  {
-  DBSelect * select =
-    [[DBSelect alloc]
-      initWithManagedObjectContext: self.managedObjectContext];
-    
-  select.table = table;
-  select.where = where;
-  select.groupBy = groupBy;
-  select.orderBy = orderBy;
-  
-  return select;
-  }
-
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  groupBy: (NSString *) groupBy
-  orderBy: (NSArray *) orderBy;
-  {
-  DBSelect * select =
-    [[DBSelect alloc]
-      initWithManagedObjectContext: self.managedObjectContext];
-    
-  select.table = table;
-  select.groupBy = groupBy;
   select.orderBy = orderBy;
   
   return select;
@@ -407,6 +368,15 @@
   insert.table = table;
   
   return insert;
+  }
+
+- (DBUpdate *) prepareUpdate
+  {
+  DBUpdate * update =
+    [[DBUpdate alloc]
+      initWithManagedObjectContext: self.managedObjectContext];
+    
+  return update;
   }
 
 - (DBUpdate *) prepareUpdate: (NSString *) table
@@ -433,16 +403,13 @@
   return update;
   }
 
-- (DBUpdate *) prepareUpdateTo: (NSArray *) objects
+- (DBDelete *) prepareDelete
   {
-  DBUpdate * update =
-    [[DBUpdate alloc]
+  DBDelete * deleteStatement =
+    [[DBDelete alloc]
       initWithManagedObjectContext: self.managedObjectContext];
     
-  for(NSManagedObject * object in objects)
-    [update addObject: object];
-  
-  return update;
+  return deleteStatement;
   }
 
 - (DBDelete *) prepareDeleteFrom: (NSString *) table
@@ -469,131 +436,205 @@
   return deleteStatement;
   }
 
-- (DBDelete *) prepareDeleteOf: (NSArray *) objects
-  {
-  DBDelete * deleteStatement =
-    [[DBDelete alloc]
-      initWithManagedObjectContext: self.managedObjectContext];
-    
-  for(NSManagedObject * object in objects)
-    [deleteStatement addObject: object];
-  
-  return deleteStatement;
-  }
-
-/* - (DBStatement *) prepare: (NSString *) sql
+// Create a statement from SQL.
+- (DBStatement *) prepare: (NSString *) sql
   {
   NSScanner * scanner = [NSScanner scannerWithString: sql];
   
-  NSString * sqlStatement = [sql lowercaseString];
+  // Look at the first word to choose what statement to create.
+  if([scanner scanString: @"select" intoString: NULL])
+    return [self parseSelect: scanner];
   
-  // Required statements.
-  BOOL found;
-  
-  if([sqlStatement hasPrefix: @"select"])
-    {
-    found = [scanner scanString: @"select" intoString: NULL];
-    found = [scanner scanString: @"*" intoString: NULL];
-  
-    if(!found)
-      return nil;
+  if([scanner scanString: @"insert" intoString: NULL])
+    return [self parseInsert: scanner];
 
-    found = [scanner scanString: @"from" intoString: NULL];
-  
-    if(!found)
-      return nil;
-    }
-  else if([[operation lowercaseString] isEqualToString: @"insert"])
+  if([scanner scanString: @"update" intoString: NULL])
+    return [self parseUpdate: scanner];
+
+  if([scanner scanString: @"delete" intoString: NULL])
+    return [self parseDelete: scanner];
+
+  return nil;
+  }
+
+// Parse a select statement.
+- (DBSelect *) parseSelect: (NSScanner *) scanner
+  {
+  DBSelect * select =
+    [[DBSelect alloc]
+      initWithManagedObjectContext: self.managedObjectContext];
+
+  // Handle distinct.
+  if([scanner scanString: @"distinct" intoString: NULL])
+    select.distinct = YES;
+    
+  // All columens - the default.
+  if([scanner scanString: @"*" intoString: NULL])
     {
-    found = [scanner scanString: @"into" intoString: NULL];
-  
-    if(!found)
-      return nil;
     }
-  else if([[operation lowercaseString] isEqualToString: @"delete"])
+    
+  // Specific columns.
+  else if([scanner scanString: @"(" intoString: NULL])
     {
-    found = [scanner scanString: @"from" intoString: NULL];
-  
-    if(!found)
+    NSString * columnNames = nil;
+    
+    if([scanner scanUpToString: @")" intoString: & columnNames])
+      select.columns = [columnNames componentsSeparatedByString: @","];
+    else
       return nil;
     }
+    
+  else
+    return nil;
+
+  // Get the table.
+  if(![scanner scanString: @"from" intoString: NULL])
+    return nil;
+    
+  NSString * table;
   
-  NSString * table = nil;
-  
-  found =
+  BOOL hasTable =
     [scanner
       scanUpToCharactersFromSet:
         [NSCharacterSet whitespaceAndNewlineCharacterSet]
       intoString: & table];
-  
-  if(!found)
+    
+  if(!hasTable)
     return nil;
-
-  // Optional clauses.
-  if([[operation lowercaseString] isEqualToString: @"select"])
-    {
-    [scanner scanUpToString: @"where" intoString: NULL];
-    }
-  else if([[operation lowercaseString] isEqualToString: @"update"])
-    {
-    found = [scanner scanString: @"values (*)" intoString: NULL];
+    
+  select.table = table;
   
-    NSMutableArray * propertiesToSet =
-      found
-        ? nil
-        : [NSMutableArray array];
-    
-    if(!found)
-      {
-      found = [scanner scanString: @"set" intoString: NULL];
-
-      if(!found)
-        return nil;
-        
-      NSString * properties = NULL;
-      
-      [scanner scanUpToString: @"where" intoString: & properties];
-      
-      NSArray * propertyList =
-        [properties componentsSeparatedByString: @","];
-        
-      for(NSString * property in propertyList)
-        {
-        NSArray * keyValuePair =
-          [property componentsSeparatedByString: @"="];
-          
-        if([keyValuePair count] < 2)
-          return nil;
-          
-        NSString * propertyName =
-          [keyValuePair[0]
-            stringByTrimmingCharactersInSet:
-              [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-        NSString * placeholder =
-          [keyValuePair[1]
-            stringByTrimmingCharactersInSet:
-              [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-          
-        if(![placeholder isEqualToString: @"?"])
-          return nil;
-          
-        [propertiesToSet addObject: propertyName];
-        }
-      }
-      
-    DBUpdate * updateStatement = [[DBUpdate alloc] init];
-    
-    updateStatement.properties = [propertiesToSet copy];
-    
-    return updateStatement;
-    }
-  else if([[operation lowercaseString] isEqualToString: @"delete"])
+  // All related tables are joined by default.
+  
+  // Get clauses.
+  NSArray * clauses =
+    @[
+      @"where",
+      @"group by",
+      @"order by",
+      @"limit",
+      @"offset"
+    ];
+  
+  NSMutableDictionary * clauseRanges = [NSMutableDictionary dictionary];
+  
+  // Find each clause in the string, possibly in any order.
+  NSUInteger location = [scanner scanLocation];
+  NSUInteger length = [[scanner string] length];
+  
+  // Find each clause start location.
+  for(NSString * clause in clauses)
     {
-    [scanner scanUpToString: @"where" intoString: NULL];
+    [scanner setScanLocation: location];
+    
+    if([scanner scanString: clause intoString: NULL])
+      {
+      NSRange range =
+        NSMakeRange(location, length - [scanner scanLocation]);
+        
+      clauseRanges[clause] = [NSValue valueWithRange: range];
+      }
     }
+  
+  // Now find each clause end location.
+  for(NSString * clause in clauseRanges)
+    {
+    NSRange range = [clauseRanges[clause] rangeValue];
+    
+    for(NSString * otherClause in clauseRanges)
+      {
+      NSRange otherRange =
+        [clauseRanges[otherClause] rangeValue];
+      
+      if((otherRange.location > range.location) &&
+        (otherRange.length < range.length))
+        range.length = otherRange.length;
+      }
+    }
+    
+  // Parse the clauses.
+  for(NSString * clause in clauseRanges)
+    {
+    NSRange range = [clauseRanges[clause] rangeValue];
 
+    NSString * string = [[scanner string] substringWithRange: range];
+    
+    if([clause isEqualToString: @"where"])
+      [self parseWhere: string statement: select];
+    
+    else if([clause isEqualToString: @"order by" ])
+      [self parseOrderBy: string select: select];
+
+    else if([clause isEqualToString: @"limit"])
+      [self parseLimit: string select: select];
+
+    else if([clause isEqualToString: @"offset"])
+      [self parseOffset: string select: select];
+    }
+    
+  return select;
+  }
+
+- (void) parseWhere: (NSString *) string
+  statement: (DBStatement *) statement
+  {
+  statement.where = [NSPredicate predicateWithFormat: string];
+  }
+
+- (void) parseOrderBy: (NSString *) string select: (DBSelect *) select
+  {
+  select.orderBy = [string componentsSeparatedByString: @","];
+  }
+
+- (void) parseLimit: (NSString *) string select: (DBSelect *) select
+  {
+  NSString * number = [string lowercaseString];
+  
+  if([number isEqualToString: @"all"])
+    return;
+    
+  NSInteger value = [number integerValue];
+  
+  if(value > 0)
+    {
+    NSRange range = select.range;
+    
+    range.length = value;
+    
+    select.range = range;
+    }
+  }
+
+- (void) parseOffset: (NSString *) string select: (DBSelect *) select
+  {
+  NSInteger value = [string integerValue];
+  
+  if(value > 0)
+    {
+    NSRange range = select.range;
+    
+    range.location = value;
+    
+    select.range = range;
+    }
+  }
+
+// Parse an insert statement.
+- (DBInsert *) parseInsert: (NSScanner *) scanner
+  {
   return nil;
-  } */
+  }
+
+// Parse an update statement.
+- (DBUpdate *) parseUpdate: (NSScanner *) scanner
+  {
+  return nil;
+  }
+
+// Parse a delete statement.
+- (DBDelete *) parseDelete: (NSScanner *) scanner
+  {
+  return nil;
+  }
 
 @end

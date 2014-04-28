@@ -9,8 +9,6 @@
 
 @property (strong, nonatomic)
   NSManagedObjectContext * managedObjectContext;
-@property (strong, nonatomic)
-  NSFetchedResultsController * fetchedResultsController;
 
 // Map entity names to table.
 @property (strong) NSString * table;
@@ -18,14 +16,11 @@
 // Predicate for selecting matching objects.
 @property (strong) NSPredicate * where;
 
-// Parameters that can be bound.
-@property (strong) NSDictionary * parameters;
+// Predicate may need to be created in two steps.
+@property (strong) NSString * whereString;
 
 // Constructor.
 - (id) initWithManagedObjectContext: (NSManagedObjectContext *) context;
-
-// Bind parameters for later execution.
-- (void) bindParameters: (NSDictionary *) parameters;
 
 // Execute the statement.
 - (BOOL) execute;

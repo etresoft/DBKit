@@ -31,8 +31,14 @@
 // Factory constructor.
 + (DB *) databaseWithName: (NSString *) name;
 
+// The current database.
++ (DB *) current;
+
 // Constructor.
 - (id) initWithName: (NSString *) databaseName;
+
+// Set the current database.
+- (void) use;
 
 // Create statements.
 - (DBSelect *) prepareSelectFrom: (NSString *) table;
@@ -41,34 +47,22 @@
 - (DBSelect *) prepareSelectFrom: (NSString *) table
   orderBy: (NSArray *) orderBy;
 - (DBSelect *) prepareSelectFrom: (NSString *) table
-  groupBy: (NSString *) groupBy;
-- (DBSelect *) prepareSelectFrom: (NSString *) table
   where: (NSPredicate *) where
-  groupBy: (NSString *) groupBy;
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  where: (NSPredicate *) where
-  orderBy: (NSArray *) orderBy;
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  where: (NSPredicate *) where
-  groupBy: (NSString *) groupBy
-  orderBy: (NSArray *) orderBy;
-- (DBSelect *) prepareSelectFrom: (NSString *) table
-  groupBy: (NSString *) groupBy
   orderBy: (NSArray *) orderBy;
 
 - (DBInsert *) prepareInsertInto: (NSString *) table;
 
+- (DBUpdate *) prepareUpdate;
 - (DBUpdate *) prepareUpdate: (NSString *) table;
 - (DBUpdate *) prepareUpdate: (NSString *) table
   where: (NSPredicate *) where;
-- (DBUpdate *) prepareUpdateTo: (NSArray *) objects;
 
+- (DBDelete *) prepareDelete;
 - (DBDelete *) prepareDeleteFrom: (NSString *) table;
 - (DBDelete *) prepareDeleteFrom: (NSString *) table
   where: (NSPredicate *) where;
-- (DBDelete *) prepareDeleteOf: (NSArray *) objects;
 
-//- (DBStatement *) prepare: (NSString *) sql;
+- (DBStatement *) prepare: (NSString *) sql;
   
 @end
 

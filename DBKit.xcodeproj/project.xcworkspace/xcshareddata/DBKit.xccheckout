@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>54204427-7F85-456F-A134-025BF6E6C569</string>
+	<string>4820D19E-130E-4552-BB9D-7B7BC6C839E2</string>
 	<key>IDESourceControlProjectName</key>
 	<string>DBKit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>91639331-2597-4F9C-9839-ACD9FDCF90E7</key>
+		<key>AAA0559D-C07C-4A4B-9922-0F27B5B3FB50</key>
 		<string>https://github.com/etresoft/DBKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>DBKit.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>91639331-2597-4F9C-9839-ACD9FDCF90E7</key>
+		<key>AAA0559D-C07C-4A4B-9922-0F27B5B3FB50</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>91639331-2597-4F9C-9839-ACD9FDCF90E7</string>
+	<string>AAA0559D-C07C-4A4B-9922-0F27B5B3FB50</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>91639331-2597-4F9C-9839-ACD9FDCF90E7</string>
+			<string>AAA0559D-C07C-4A4B-9922-0F27B5B3FB50</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DBKit</string>
 		</dict>

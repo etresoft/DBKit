@@ -8,7 +8,7 @@
 
 @interface DBDelete : DBMutatingStatement
 
-// Execute against specific objects.
-- (BOOL) executeAgainst: (NSArray *) objectsToDelete;
+// Delete an object.
+- (void) delete: (NSManagedObject *) object;
 
 @end

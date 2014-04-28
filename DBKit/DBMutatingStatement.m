@@ -8,16 +8,6 @@
 
 @implementation DBMutatingStatement
 
-@synthesize objects;
-
-- (NSMutableArray *) objects
-  {
-  if(!objects)
-    objects = [[NSMutableArray alloc] init];
-    
-  return objects;
-  }
-
 // Constructor.
 - (id) initWithManagedObjectContext: (NSManagedObjectContext *) context
   {
@@ -32,18 +22,6 @@
   self = [super initWithManagedObjectContext: editingContext];
   
   return self;
-  }
-
-// Add an object. This will fault the object into the mutating context
-// so return the mutable object as well as adding it to the internal set.
-- (NSManagedObject *) addObject: (NSManagedObject *) objectToAdd
-  {
-  NSManagedObject * object =
-    [self.managedObjectContext objectWithID: objectToAdd.objectID];
-    
-  [self.objects addObject: object];
-  
-  return object;
   }
 
 // Commit changes.
